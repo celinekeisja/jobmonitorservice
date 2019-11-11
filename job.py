@@ -29,8 +29,6 @@ def read_one(job_id):
 
 
 def create(job):
-    # app_name = job.get("app_name")
-    # state = job.get("state")
     schema = JobSchema()
     new_job = schema.load(job, session=db.session)
 

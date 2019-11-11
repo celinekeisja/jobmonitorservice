@@ -3,8 +3,8 @@ from config import db
 from models import Job
 
 JOBS = [
-    {'job_id ': '{uuid.uuid1()}', 'app_name': 'Telegram', 'state': 'PROCESSING'},
-    {'job_id ': '{uuid.uuid1()}', 'app_name': 'Name1', 'state': 'PROCESSING'}
+    {'job_id ': '{uuid.uuid1()}', 'app_name': 'Name1', 'state': 'PROCESSING'},
+    {'job_id ': '{uuid.uuid1()}', 'app_name': 'Name2', 'state': 'PROCESSING'}
 
 ]
 
