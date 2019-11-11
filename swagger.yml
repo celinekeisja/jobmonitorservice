@@ -1,0 +1,148 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger ReST Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+#basePath: /api
+
+# Paths supported by the server application
+paths:
+  /modulelogs:
+    get:
+      operationId: job.read_all
+      tags:
+        - Job
+      summary: Read the entire list of job
+      description: Read the list of job
+      responses:
+        200:
+          description: Successfully read people set operation
+          schema:
+            type: array
+            items:
+              properties:
+                job_id:
+                  type: string
+                  format: uuid
+                  description: Id of the job
+                app_name:
+                  type: string
+                  description: Name of app
+                state:
+                  type: string
+                  enum: [STARTED, FINISHED, ERROR]
+                  description: State of app
+                date_created:
+                  type: string
+                  description: Create/Update timestamp of this note
+
+    post:
+      operationId: job.create
+      tags:
+        - Job
+      summary: Create a job
+      description: Create a new job
+      parameters:
+        - name: job
+          in: body
+          description: Job to create
+          schema:
+            type: object
+            properties:
+              app_name:
+                type: string
+                description: name of app
+              state:
+                type: string
+                description: state of job
+      responses:
+        201:
+          description: Successfully created job
+
+
+  /modulelogs/{job_id}:
+    get:
+      operationId: job.read_one
+      tags:
+        - Job
+      summary: Read one job
+      description: Read one job
+      parameters:
+        - name: job_id
+          in: path
+          description: Id of the job to get
+          type: string
+          format: uuid
+          required: True
+      responses:
+        200:
+          description: Successfully read job from job data operation
+          schema:
+            type: object
+            properties:
+              job_id:
+                type: string
+                format: uuid
+                description: Id of the job
+              app_name:
+                type: string
+                description: name of this app
+              state:
+                type: string
+                description: state of job
+              date_created:
+                type: string
+                format: date
+                description: Create/Update timestamp of this app
+    put:
+      operationId: job.update
+      tags:
+        - Job
+      summary: Update a job
+      description: Update a job
+      parameters:
+        - name: job_id
+          in: path
+          description: Id the job to update
+          type: string
+          format: uuid
+          required: True
+        - name: job
+          in: body
+          schema:
+            type: object
+            properties:
+              app_name:
+                type: string
+                description: Name of app
+              state:
+                type: string
+                enum: [STARTED, FINISHED, ERROR]
+                description: State of job
+              date_created:
+                type: string
+                description: Create/Update timestamp of the job
+      responses:
+        200:
+          description: Successfully updated job
+    delete:
+      operationId: job.delete
+      tags:
+        - Job
+      summary: Delete a job from the jobs list
+      description: Delete a job
+      parameters:
+        - name: job_id
+          in: path
+          type: string
+          format: uuid
+          description: Id of the job to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a job
