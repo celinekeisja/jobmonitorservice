@@ -1,7 +1,7 @@
 connexion
 atomicwrites==1.3.0
 attrs==19.3.0
-certifi==2019.9.11
+certifi==2022.12.7
 colorama==0.4.1
 coverage==4.5.4
 importlib-metadata==0.23
